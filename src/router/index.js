@@ -1,12 +1,12 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import NProgress from "nprogress";
-import findLast from "lodash/findLast";
+// import findLast from "lodash/findLast";
 import "nprogress/nprogress.css";
 import NotFound from "./../views/others/404"; // 非异步加载
 import Forbidden from "./../views/others/403"; // 非异步加载
-import { check, isLogin } from "./../utils/auth";
-import { notification } from "ant-design-vue";
+// import { check, isLogin } from "./../utils/auth";
+// import { notification } from "ant-design-vue";
 // import RenderRouterView from "./../components/RenderRouterView";
 
 Vue.use(VueRouter);
@@ -213,29 +213,29 @@ const router = new VueRouter({
 
 // 路由守卫
 router.beforeEach((to, from, next) => {
-  if (to.path !== from.path) {
-    // 路由发生变化时,开始进度条
-    NProgress.start();
-  }
-  const record = findLast(to.matched, record => record.meta.authority);
-  // 判断权限
-  if (record && !check(record.meta.authority)) {
-    if (!isLogin() && to.path !== "/user/login") {
-      // 必须调用next路由才能往下走
-      next({
-        path: "/user/login"
-      });
-    } else if (to.path !== "/403") {
-      notification.error({
-        message: "403",
-        description: "无权限"
-      });
-      next({
-        path: "/403"
-      });
-    }
-    NProgress.done();
-  }
+  // if (to.path !== from.path) {
+  //   // 路由发生变化时,开始进度条
+  //   NProgress.start();
+  // }
+  // const record = findLast(to.matched, record => record.meta.authority);
+  // // 判断权限
+  // if (record && !check(record.meta.authority)) {
+  //   if (!isLogin() && to.path !== "/user/login") {
+  //     // 必须调用next路由才能往下走
+  //     next({
+  //       path: "/user/login"
+  //     });
+  //   } else if (to.path !== "/403") {
+  //     notification.error({
+  //       message: "403",
+  //       description: "无权限"
+  //     });
+  //     next({
+  //       path: "/403"
+  //     });
+  //   }
+  //   NProgress.done();
+  // }
 
   next();
 });

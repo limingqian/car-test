@@ -42,6 +42,10 @@ export default {
       // };
       // 返回权限列表
       let auth = response.data;
+      console.log('++++auth++++++')
+      console.log(auth)
+      console.log('++++auth++++++')
+      
       if (auth === "error") {
         this.$notification.open({
           message: "用户名或密码错误",
